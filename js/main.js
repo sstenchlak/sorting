@@ -1,5 +1,17 @@
 var board;
 var aa = [];
+
+function cloneObject(obj) {
+    let clone = {};
+    for(let i in obj) {
+        if(typeof(obj[i])=="object" && obj[i] != null)
+            clone[i] = cloneObject(obj[i]);
+        else
+            clone[i] = obj[i];
+    }
+    return clone;
+}
+
 $(function(){
     board = new Board();
 
@@ -16,7 +28,6 @@ $(function(){
     $('#buttons').find('button').eq(4).click(()=>board.FastForward());
 
     $(document).keydown(function(e) {
-        console.log(e.which);
         switch (e.which) {
             case 36:
                 board.FastBackward();
@@ -39,22 +50,22 @@ $(function(){
 
     $(window).resize(() => board.updated());
 
-    for (let i = 1; i < 8; i++) {
+   /* for (let i = 1; i < 8; i++) {
         b = new NumberActor(i, board);
         b._state.pos.x = 100*i;
         b._redraw();
         aa.push(b);
-    }
+    }*/
 
 });
-
+/*
 function foo() {
     for (let i = 1; i < 4; i++) {
-        aa[i-1].setState({pos:{x: 100*i - 100}});
+        aa[i-1].setState({pos:{x: 100*i - 100}, stroke: [255, 200, 0]});
     }
     aa[3].setState({pos:{y: 200},size:2});
     for (let i = 5; i < 8; i++) {
-        aa[i-1].setState({pos:{x: 100*i + 100}});
+        aa[i-1].setState({pos:{x: 100*i + 100}, stroke: [255, 50, 0]});
     }
     board.textHelpActor.setState({text:"Vybrali jsme prostřední prvek..."});
     board.backgroundActor.setState({colors:[[62,35,255],
@@ -65,6 +76,6 @@ function foo() {
 
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
-        kokote();
+        foo();
     }
-}
+}*/

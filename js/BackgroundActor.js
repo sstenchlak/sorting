@@ -5,12 +5,7 @@ class BackgroundActor extends Actor {
         this._colorIndices = [0,1,2,3];
         this._step = 0;
         this._state = {
-            colors: [
-                [35,166,213],
-                [35,216,171],
-                [141,40,218],
-                [87,58,218]
-            ],
+            colors: BackgroundActor.COLORS_BLUE,
             gradientSpeed: 0.002
         };
 
@@ -55,3 +50,26 @@ class BackgroundActor extends Actor {
         }
     }
 }
+
+BackgroundActor.COLORS_BLUE = [
+    [35,166,213],
+    [35,216,171],
+    [141,40,218],
+    [87,58,218]
+];
+
+BackgroundActor.COLORS_RED = [
+    [213,166,35],
+    [171,216,35],
+    [218,40,141],
+    [218,58,87]
+];
+
+    /*
+    [
+    [60,255,60],
+    [255,35,98],
+    [150,255,0],
+    [255,128,0]
+];
+     */

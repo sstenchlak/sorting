@@ -8,16 +8,8 @@ class NumberActor extends Actor {
                 y: 0
             },
             size: 1,
-            color: {
-                R: 255,
-                G: 255,
-                B: 255
-            },
-            text: {
-                R: 0,
-                G: 0,
-                B: 0
-            },
+            color: [255, 255, 255],
+            text: [0, 0, 0],
             stroke: [255, 255, 255]
         };
 
@@ -31,12 +23,14 @@ class NumberActor extends Actor {
             .attr('cx', this._state.pos.x)
             .attr('cy', this._state.pos.y)
             .attr('r', this._state.size*30)
-            .attr('fill', 'rgb(' + Math.round(this._state.color.R) + ',' + Math.round(this._state.color.G) + ','+ Math.round(this._state.color.B) + ')');
+            .attr('fill', 'rgb(' + Math.round(this._state.color[0]) + ',' + Math.round(this._state.color[1]) + ','+ Math.round(this._state.color[2]) + ')')
+            .attr('stroke-width', this._state.size*3)
+            .attr('stroke', 'rgb(' + Math.round(this._state.stroke[0]) + ',' + Math.round(this._state.stroke[1]) + ','+ Math.round(this._state.stroke[2]) + ')');
         this._elementText
             .attr('x', this._state.pos.x)
             .attr('y', this._state.pos.y)
             .attr('font-size', this._state.size*30)
-            .attr('fill', 'rgb(' + Math.round(this._state.text.R) + ',' + Math.round(this._state.text.G) + ','+ Math.round(this._state.text.B) + ')');
+            .attr('fill', 'rgb(' + Math.round(this._state.text[0]) + ',' + Math.round(this._state.text[1]) + ','+ Math.round(this._state.text[2]) + ')');
         this._board.updated();
     }
 
