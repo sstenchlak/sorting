@@ -1,5 +1,8 @@
-var board;
-var aa = [];
+var board; // Global accessible
+
+/**
+ * Helper functions
+ */
 
 function cloneObject(obj) {
     let clone = {};
@@ -12,21 +15,33 @@ function cloneObject(obj) {
     return clone;
 }
 
+function generateRandomNumbers() {
+    return Array.from({length: 10 + Math.floor(Math.random() * 5)}, () => Math.floor(Math.random() * 15));
+}
+
 $(function(){
+
+    // Register application
     board = new Board();
 
     board.registerSpeedSlider($('.speed-slider'));
-    board.registerBackgroundElement($('#background'));
+    board.registerBackgroundElement($('#background, #menu'));
     board.registerTextContainer($('#texts'));
     board.registerSVG($('#board'));
     board.registerPresentationSlider($('.presentation-slider').eq(0));
 
-    $('#buttons').find('button').eq(0).click(()=>board.FastBackward());
-    $('#buttons').find('button').eq(1).click(()=>board.Backward());
-    board.registerPlayPauseButton($('#buttons').find('button').eq(2));
-    $('#buttons').find('button').eq(3).click(()=>board.Forward());
-    $('#buttons').find('button').eq(4).click(()=>board.FastForward());
+    let buttons = $('#buttons').find('button');
 
+    buttons.eq(0).click(()=>board.FastBackward());
+    buttons.eq(1).click(()=>board.Backward());
+    board.registerPlayPauseButton(buttons.eq(2));
+    buttons.eq(3).click(()=>board.Forward());
+    buttons.eq(4).click(()=>board.FastForward());
+    buttons.eq(5).click(()=>board.Stop());
+
+    board.registerMainmenu($('#menu'));
+
+    // Register hotkeys
     $(document).keydown(function(e) {
         switch (e.which) {
             case 36:
@@ -48,34 +63,7 @@ $(function(){
         }
     });
 
+    // Register window resize
     $(window).resize(() => board.updated());
 
-   /* for (let i = 1; i < 8; i++) {
-        b = new NumberActor(i, board);
-        b._state.pos.x = 100*i;
-        b._redraw();
-        aa.push(b);
-    }*/
-
 });
-/*
-function foo() {
-    for (let i = 1; i < 4; i++) {
-        aa[i-1].setState({pos:{x: 100*i - 100}, stroke: [255, 200, 0]});
-    }
-    aa[3].setState({pos:{y: 200},size:2});
-    for (let i = 5; i < 8; i++) {
-        aa[i-1].setState({pos:{x: 100*i + 100}, stroke: [255, 50, 0]});
-    }
-    board.textHelpActor.setState({text:"Vybrali jsme prostřední prvek..."});
-    board.backgroundActor.setState({colors:[[62,35,255],
-        [60,255,60],
-    [255,35,98],
-        [45,175,230]]});
-}
-
-document.body.onkeyup = function(e){
-    if(e.keyCode == 32){
-        foo();
-    }
-}*/

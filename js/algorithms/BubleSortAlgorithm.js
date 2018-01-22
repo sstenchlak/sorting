@@ -1,4 +1,7 @@
 class BubleSortAlgorithm extends Algorithm {
+    static getName() {return "Buble sort"}
+    static getDescription() {return "Bublinkové řazení (anglicky bubble sort, česky též řazení záměnou) je implementačně jednoduchý řadicí algoritmus. Algoritmus opakovaně prochází seznam, přičemž porovnává každé dva sousedící prvky, a pokud nejsou ve správném pořadí, prohodí je. Pro praktické účely je neefektivní, využívá se hlavně pro výukové účely či v nenáročných aplikacích."}
+
     prepare (numbersToSort, board, presenter) {
         // Create numbers
         super.prepare(numbersToSort, board, presenter);
@@ -28,7 +31,7 @@ class BubleSortAlgorithm extends Algorithm {
             if (swaps)
                 this.presenter.addSlide("V poli jsme provedli " + swaps + " přehození. Pokračujme tedy dále.", 3, this.states, this.staticActors);
             else {
-                this.staticActors.background.colors = BackgroundActor.COLORS_RED;
+                this.staticActors.background.colors = BackgroundActor.COLORS_RED();
                 this.presenter.addSlide("Tentokrát jsme nic nepřehodili a pole je tedy seřazené. Toto je celý buble sort.", 3, this.states, this.staticActors);
             }
         } while (swaps);

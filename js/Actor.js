@@ -4,6 +4,8 @@ class Actor {
         this._board = board;
     }
 
+    destructor() {}
+
     mapState(lastStatus, newStatus, status, val) {
         for(let index in newStatus) {
             if (typeof lastStatus[index] === 'object')
@@ -18,12 +20,12 @@ class Actor {
 
     setState(state, immediately) {
         if (immediately) {
-            this._state = state;
+            this._state = Object.assign(this._state, cloneObject(state));
             this._redraw();
             return;
         }
         let lastStatus = cloneObject(this._state);
-        this._board.animator.animate((v) => {
+        this._board.presenter.animator.animate((v) => {
             this.mapState(lastStatus, state, this._state, v);
             this._redraw();
         })

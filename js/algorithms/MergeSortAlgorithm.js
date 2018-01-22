@@ -1,4 +1,7 @@
 class MergeSortAlgorithm extends Algorithm {
+    static getName() {return "Merge sort"}
+    static getDescription() {return "Merge sort je algoritmus, založený na tzv. principu rozděl a panuj (latinsky divide et impera, anglicky divide and conquer). To znamená, že pokud nějaký problém neumíme vyřešit v celku, rozložíme si ho na více menších a jednodušších problémů. Ten samý postup aplikujeme i na tyto problémy (opět je rozdělíme na ještě menší, mimochodem velmi se zde nabízí rekurzivní řešení) až se dostaneme na takovou úroveň, kterou jsme schopni bez problému řešit. V problému třídění se často chceme dostat až k poli velikosti 1, které považujeme automaticky za setříděné."}
+
     prepare(numbersToSort, board, presenter) {
         // Create numbers
         super.prepare(numbersToSort, board, presenter);
@@ -40,7 +43,7 @@ class MergeSortAlgorithm extends Algorithm {
          * *************************************************************************************
          */
 
-        this.staticActors.background.colors = BackgroundActor.COLORS_RED;
+        this.staticActors.background.colors = BackgroundActor.COLORS_RED();
 
         for (let i in group) {
             this.states[group[i][0]].pos.x = i*100;
@@ -51,7 +54,7 @@ class MergeSortAlgorithm extends Algorithm {
 
         this._fullMergeSort(group, 0, 0);
 
-        this.staticActors.background.colors = BackgroundActor.COLORS_BLUE;
+        this.staticActors.background.colors = BackgroundActor.COLORS_BLUE();
 
         this.presenter.addSlide("Děkuji za pozornost.", 4, this.states, this.staticActors);
     }

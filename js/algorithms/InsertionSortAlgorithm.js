@@ -1,4 +1,7 @@
 class InsertionSortAlgorithm extends Algorithm {
+    static getName() {return "Insertion sort"}
+    static getDescription() {return "Řazení vkládáním (anglicky insertion sort) je jednoduchý řadicí algoritmus založený na porovnávání. Algoritmus Insertion Sort pracuje tak, že prochází prvky postupně a každý další nesetříděný prvek zařadí na správné místo do již setříděné posloupnosti. Je to jeden z nejrychlejších algoritmů s kvadratickou časovou složitostí. Je asymptoticky pomalejší než pokročilé algoritmy jako třeba quicksort nebo mergesort, ale má jiné výhody."}
+
     prepare (numbersToSort, board, presenter) {
         // Create numbers
         super.prepare(numbersToSort, board, presenter);
@@ -50,7 +53,7 @@ class InsertionSortAlgorithm extends Algorithm {
             this.presenter.addSlide("Prvek " + right +" zařadíme na své místo.", 3, this.states, this.staticActors);
         }
 
-        this.staticActors.background.colors = BackgroundActor.COLORS_RED;
+        this.staticActors.background.colors = BackgroundActor.COLORS_RED();
         this.presenter.addSlide("Prvky došly, pole je seřazené.", 3, this.states, this.staticActors);
         this.presenter.addSlide("Děkuji za pozornost.", 4, this.states, this.staticActors);
 

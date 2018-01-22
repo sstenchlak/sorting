@@ -13,4 +13,14 @@ class Algorithm {
             this.staticActors[i] = cloneObject(board.staticActors[i]._state);
         }
     }
+
+    destructor() {
+        for (let i in this.children) {
+            this.children[i].destructor();
+            delete this.children[i];
+        }
+    }
+
+    static getName() {}
+    static getDescription() {}
 }

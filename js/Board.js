@@ -1,6 +1,5 @@
 class Board {
     constructor () {
-        this.animator = new Animator(Board.ANIMATION_DEFAULT_DURATION);
         /**
          * @type {Array.<Actor>} List of all elements, that could be changed during the animation
          */
@@ -26,22 +25,19 @@ class Board {
     // Need to register and initialize all the HTLM elements
 
     registerSpeedSlider(speedSlider) {
-        let min = [0.3, 0.3];
-        let max = [10, 3];
+        let min = 0.25;
+        let max = 4;
         let that = this;
         speedSlider.on('input', function() {
             let x = $(this).val()/1000;
-            let val=[1,1];
+            let val=1;
             if (x>0.5) {
-                val[0] = (max[0] - 1)*(x-0.5)/0.5 + 1;
-                val[1] = (max[1] - 1)*(x-0.5)/0.5 + 1;
+                val = (max - 1)*(x-0.5)/0.5 + 1;
             } else {
-                val[0] = (1 - min[0]) * (x) / 0.5 + min[0];
-                val[1] = (1 - min[1]) * (x) / 0.5 + min[1];
+                val = (1 - min) * (x) / 0.5 + min;
             }
 
-            that.animator.duration = Board.ANIMATION_DEFAULT_DURATION/val[1];
-            that.presenter.relativeSpeed = 1/val[0];
+            that.presenter.relativeSpeed = val;
 
             that.presenter.playpauseUpdated();
 
@@ -63,6 +59,14 @@ class Board {
     registerSVG(svg) {
         this.svg = svg;
         this.scaleLayer = svg.find('.scale-layer');
+    }
+
+    registerMainmenu(container) {
+        this.mainMenu = new MainMenu(container, (alg, arr)=>{
+            this.backgroundActor.setState({colors: BackgroundActor.COLORS_BLUE()},true);
+            this.presenter.initAlgorithm(alg, arr);
+        });
+        this.Stop();
     }
 
     registerPresentationSlider(slider) {
@@ -101,8 +105,9 @@ class Board {
         this.presenter.goToSlide(this.presenter.countOfSlides-1);
     }
 
-
-
+    Stop() {
+        this.presenter.destroyAlgorithm();
+        this.mainMenu.openMenu();
+        this.backgroundActor.setState({colors: BackgroundActor.COLORS_GREEN()}, true);
+    }
 }
-
-Board.ANIMATION_DEFAULT_DURATION = 500;

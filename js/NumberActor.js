@@ -18,6 +18,11 @@ class NumberActor extends Actor {
         this._elementText.text(number);
     }
 
+    destructor () {
+        this._elementCircle.remove();
+        this._elementText.remove();
+    }
+
     _redraw(){
         this._elementCircle
             .attr('cx', this._state.pos.x)

@@ -8,12 +8,13 @@ class Presenter {
         this.algrorithm = null;
         this.board = board;
         this.timeout = null;
+        this.animator = new Animator();
+
     }
 
     addSlide(text, duration, states, staticActors) {
         staticActors.text.text = text;
         this.slides.push({
-            //text: text,
             duration: duration,
             states: cloneObject(states),
             staticActors: cloneObject(staticActors)
@@ -21,9 +22,25 @@ class Presenter {
         this.countOfSlides++;
     }
 
-    removeSlides() {
-        this.slides = [];
+    destroyAlgorithm() {
         this.countOfSlides = 0;
+        if (this.algorithm) {
+            this.algorithm.destructor();
+            delete this.algorithm;
+            this.algorithm = null;
+        }
+        for (let i in this.slides) {
+            delete this.slides[i];
+        }
+        delete this.slides;
+        this.slides = [];
+
+        this.board.textHelpActor.setState({text: null}, true);
+
+        this.isRunning = false;
+        this.actualSlide = 0;
+        this.playpauseUpdated();
+        this.board._updatePlayPauseButton();
     }
 
     /**
@@ -31,7 +48,8 @@ class Presenter {
      * @param {Array} arr
      */
     initAlgorithm(alg, arr) {
-        this.removeSlides();
+        this.destroyAlgorithm();
+
         this.algorithm = new alg();
         this.algorithm.prepare(arr, this.board, this);
 
@@ -54,19 +72,21 @@ class Presenter {
     }
 
     drawSlide(n) {
+        this.animator.duration = Presenter.ANIMATION_RATIO_DURATION * this.slides[n].duration * 1000 / this.relativeSpeed;
         for (let i in this.slides[n].states) {
             this.algorithm.children[i].setState(this.slides[n].states[i]);
         }
         for (let i in this.slides[n].staticActors) {
             this.board.staticActors[i].setState(this.slides[n].staticActors[i]);
         }
-        /*this.board.backgroundActor.setState(this.slides[n].staticActors.backgroud);
-        this.board.textHelpActor.setState({text: this.slides[n].text});*/
+
     }
 
     playpauseUpdated() {
         clearTimeout(this.timeout);
         if (!this.countOfSlides || !this.isRunning) return;
-        this.timeout = setTimeout(()=>this.goToSlide(this.actualSlide + 1), this.slides[this.actualSlide].duration * 1000 * this.relativeSpeed);
+        this.timeout = setTimeout(()=>this.goToSlide(this.actualSlide + 1), this.slides[this.actualSlide].duration * 1000 / this.relativeSpeed);
     }
 }
+
+Presenter.ANIMATION_RATIO_DURATION = 0.25;

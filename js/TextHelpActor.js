@@ -11,7 +11,7 @@ class TextHelpActor extends Actor {
         if (this._state.text == status.text) return;
         this._state.text = status.text;
 
-        this._container.find('.text-help').stop().fadeTo(immediately ? 0 : this._board.animator.duration / 2, 0, () => {
+        this._container.find('.text-help').stop().fadeTo(immediately ? 0 : this._board.presenter.animator.duration / 2, 0, () => {
             this._container.find('.text-help').remove();
             this._createNewText(status.text);
         });
@@ -21,6 +21,6 @@ class TextHelpActor extends Actor {
     _createNewText(newText, immediately) {
         let text = jQuery('<div></div>').appendTo(this._container).addClass('text-help').stop().fadeTo(0,0);
         jQuery('<p></p>').appendTo(text).html(newText);
-        text.fadeTo(immediately ? 0 : this._board.animator.duration / 2, 1);
+        text.fadeTo(immediately ? 0 : this._board.presenter.animator.duration / 2, 1);
     }
 }

@@ -5,7 +5,7 @@ class BackgroundActor extends Actor {
         this._colorIndices = [0,1,2,3];
         this._step = 0;
         this._state = {
-            colors: BackgroundActor.COLORS_BLUE,
+            colors: BackgroundActor.COLORS_GREEN(),
             gradientSpeed: 0.002
         };
 
@@ -44,32 +44,39 @@ class BackgroundActor extends Actor {
 
             //pick two new target color indices
             //do not pick the same as the current one
-            this._colorIndices[1] = ( this._colorIndices[1] + Math.floor( 1 + Math.random() * (this._state.colors.length - 1))) % this._state.colors.length;
-            this._colorIndices[3] = ( this._colorIndices[3] + Math.floor( 1 + Math.random() * (this._state.colors.length - 1))) % this._state.colors.length;
+            //this._colorIndices[1] = ( this._colorIndices[1] + Math.floor( 1 + Math.random() * (this._state.colors.length - 1))) % this._state.colors.length;
+            //this._colorIndices[3] = ( this._colorIndices[3] + Math.floor( 1 + Math.random() * (this._state.colors.length - 1))) % this._state.colors.length;
+            this._colorIndices[1] = ( this._colorIndices[1] + Math.floor( 1 + Math.random() * (4 - 1))) % 4;
+            this._colorIndices[3] = ( this._colorIndices[3] + Math.floor( 1 + Math.random() * (4 - 1))) % 4;
 
         }
     }
+
+    static COLORS_BLUE() {
+        return [
+            [35,166,213],
+            [35,216,171],
+            [141,40,218],
+            [87,58,218]
+        ];
+    }
+
+    static COLORS_RED() {
+        return [
+            [213,166,35],
+            [171,216,35],
+            [218,40,141],
+            [218,58,87]
+        ];
+    }
+
+    static COLORS_GREEN() {
+        return [
+            [166,213,35],
+            [216,171,35],
+            [40,218,141],
+            [58,218,87]
+        ];
+    }
+
 }
-
-BackgroundActor.COLORS_BLUE = [
-    [35,166,213],
-    [35,216,171],
-    [141,40,218],
-    [87,58,218]
-];
-
-BackgroundActor.COLORS_RED = [
-    [213,166,35],
-    [171,216,35],
-    [218,40,141],
-    [218,58,87]
-];
-
-    /*
-    [
-    [60,255,60],
-    [255,35,98],
-    [150,255,0],
-    [255,128,0]
-];
-     */

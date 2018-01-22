@@ -1,6 +1,6 @@
 class Animator {
-    constructor(duration){
-        this.duration = duration;
+    constructor(){
+        this.duration = null;
     }
 
     animate(callback, durationRatio = 1) {
