@@ -13,8 +13,8 @@ class InsertionSortAlgorithm extends Algorithm {
             this.states[i].pos.x = i*100;
         }
 
-        this.presenter.addSlide("Podívejme se, jak bychom seřadili těchto " + count + " prvků algoritmem zvaným <b>insertion sort</b>.", 4, this.states, this.staticActors);
-        this.presenter.addSlide("Algoritmus vybere první prvek, ten je triviálně seřazen. Poté přidává další prvky, které porovnává s ostatními již seřazenými.", 4, this.states, this.staticActors);
+        this.presenter.addSlide("Podívejme se, jak bychom seřadili těchto " + count + " prvků algoritmem zvaným <b>insertion sort</b>.", 5, this.states, this.staticActors);
+        this.presenter.addSlide("Algoritmus vybere první prvek, ten je triviálně seřazen. Poté přidává další prvky, které porovnává s ostatními již seřazenými.", 5, this.states, this.staticActors);
 
         // Create groups
         let group = [];
@@ -27,7 +27,7 @@ class InsertionSortAlgorithm extends Algorithm {
 
         for (let pointer = 1; pointer < group.length; pointer++) {
             this.states[group[pointer][0]].pos.y = -200;
-            this.presenter.addSlide("Vytáhli jsme z pole prvek " + group[pointer][1] +", nyní ho zařaďme jednoduchým porovnáním.", 3, this.states, this.staticActors);
+            this.presenter.addSlide("Vytáhli jsme z pole prvek " + group[pointer][1] +", nyní ho zařaďme jednoduchým porovnáním.", 4, this.states, this.staticActors);
 
             let element = group[pointer];
 
@@ -50,11 +50,11 @@ class InsertionSortAlgorithm extends Algorithm {
             }
 
             this.states[element[0]].pos.y = -300;
-            this.presenter.addSlide("Prvek " + right +" zařadíme na své místo.", 3, this.states, this.staticActors);
+            this.presenter.addSlide("Prvek " + right +" jsme zařadili na své místo.", 4, this.states, this.staticActors);
         }
 
         this.staticActors.background.colors = BackgroundActor.COLORS_RED();
-        this.presenter.addSlide("Prvky došly, pole je seřazené.", 3, this.states, this.staticActors);
+        this.presenter.addSlide("Prvky došly, pole je seřazené.", 8, this.states, this.staticActors);
         this.presenter.addSlide("Děkuji za pozornost.", 4, this.states, this.staticActors);
 
     }

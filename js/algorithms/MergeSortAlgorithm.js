@@ -14,7 +14,7 @@ class MergeSortAlgorithm extends Algorithm {
         }
 
         this.presenter.addSlide("Podívejme se, jak bychom seřadili těchto " + count + " prvků algoritmem zvaným <b>merge sort</b>.", 4, this.states, this.staticActors);
-        this.presenter.addSlide("Algoritmus je rekurzivní, to znamená, že volá sám sebe. Obvykle se tak složitá práce rozdělí na více jednodušších. Nejprve se podívejme, co se bude dít uvnitř jedné instance funkce, pokud zavoláme algoritmus na následující čísla.", 4, this.states, this.staticActors);
+        this.presenter.addSlide("Algoritmus je rekurzivní, to znamená, že volá sám sebe. Obvykle se tak složitá práce rozdělí na více jednodušších. Nejprve se podívejme, co se bude dít uvnitř jedné instance funkce, pokud zavoláme algoritmus na následující čísla.", 10, this.states, this.staticActors);
 
         // Create groups
         let group = [];
@@ -24,13 +24,13 @@ class MergeSortAlgorithm extends Algorithm {
 
         let groups = this._splitToHalf(group, 0, 200);
 
-        this.presenter.addSlide("Pole jsme si rozdělili na dvě dvě poloviny. Nyní každou polovinu necháme zvlášť seřadit mereg sortem. Protože víme, že merge sort umí třídit, dostaneme setříděné pole.", 4, this.states, this.staticActors);
+        this.presenter.addSlide("Pole jsme si rozdělili na dvě dvě poloviny. Nyní každou polovinu necháme zvlášť seřadit merge sortem. Protože víme, že merge sort umí třídit, dostaneme setříděné pole.", 8, this.states, this.staticActors);
 
         // Sort halves
         this._sort(groups[0],0);
         this._sort(groups[1],100*groups[0].length + 100);
 
-        this.presenter.addSlide("Máme tedy 2 seřazená pole a jediným zbývajícím úkolem je spojit je. Přitom se vždy stačí dívat na první prvky v obou polích, ty porovnat, menší odebrat a dát do výsledného pole.", 4, this.states, this.staticActors);
+        this.presenter.addSlide("Máme tedy 2 seřazená pole a jediným zbývajícím úkolem je spojit je. Přitom se vždy stačí dívat na první prvky v obou polích, ty porovnat, menší odebrat a dát do výsledného pole.", 8, this.states, this.staticActors);
 
         this._fullMergeOperation(groups[0], groups[1], 0, 0);
 
@@ -151,7 +151,7 @@ class MergeSortAlgorithm extends Algorithm {
             // Number has been moved
         }
 
-        this.presenter.addSlide(nocoment ? null : "Přesunulo se poslední číslo, nyní máme jedno pole prázdné a jedno stále plné. To ale nevadí, jednoduše všechny prvky přesuneme do výsledného pole.", nocoment ? 0.5 : 4, this.states, this.staticActors);
+        this.presenter.addSlide(nocoment ? null : "Přesunulo se poslední číslo, nyní máme jedno pole prázdné a jedno stále plné. To ale nevadí, jednoduše všechny prvky přesuneme do výsledného pole.", nocoment ? 0.5 : 6, this.states, this.staticActors);
 
         while (left.length != leftPointer) {
             this.states[left[leftPointer][0]].pos.y = ybase;

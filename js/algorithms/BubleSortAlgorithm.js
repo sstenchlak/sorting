@@ -13,8 +13,8 @@ class BubleSortAlgorithm extends Algorithm {
             this.states[i].pos.x = i*100;
         }
 
-        this.presenter.addSlide("Podívejme se, jak bychom seřadili těchto " + count + " prvků algoritmem zvaným <b>buble sort</b>.", 4, this.states, this.staticActors);
-        this.presenter.addSlide("Algoritmus je velmi jednoduchý, porovnává postupně vždy dva prvky a prohodí je, pokud jsou ve špatném pořadí. Můžeme si tedy povšimnout, že největší prvek vždy \"probublá\" až na konec.", 4, this.states, this.staticActors);
+        this.presenter.addSlide("Podívejme se, jak bychom seřadili těchto " + count + " prvků algoritmem zvaným <b>buble sort</b>.", 7, this.states, this.staticActors);
+        this.presenter.addSlide("Algoritmus je velmi jednoduchý, porovnává postupně vždy dva prvky a prohodí je, pokud jsou ve špatném pořadí. Můžeme si tedy povšimnout, že největší prvek vždy \"probublá\" až na konec.", 9, this.states, this.staticActors);
 
         // Create groups
         let group = [];
@@ -24,7 +24,7 @@ class BubleSortAlgorithm extends Algorithm {
 
         let swaps = this._oneBuble(group);
 
-        this.presenter.addSlide("Došli jsme do konce a provedli jsme " + swaps + " přehození. Pole stále není seřazené, proto ho budeme procházet tak dlouo, dokud stále bude co přehazovat.", 4, this.states, this.staticActors);
+        this.presenter.addSlide("Došli jsme do konce a provedli jsme " + swaps + " přehození. Pole stále není seřazené, proto ho budeme procházet tak dlouo, dokud stále bude co přehazovat.", 8, this.states, this.staticActors);
 
         do {
             swaps = this._oneBuble(group, true);
@@ -32,7 +32,7 @@ class BubleSortAlgorithm extends Algorithm {
                 this.presenter.addSlide("V poli jsme provedli " + swaps + " přehození. Pokračujme tedy dále.", 3, this.states, this.staticActors);
             else {
                 this.staticActors.background.colors = BackgroundActor.COLORS_RED();
-                this.presenter.addSlide("Tentokrát jsme nic nepřehodili a pole je tedy seřazené. Toto je celý buble sort.", 3, this.states, this.staticActors);
+                this.presenter.addSlide("Tentokrát jsme nic nepřehodili a pole je tedy seřazené. Toto je celý buble sort.", 8, this.states, this.staticActors);
             }
         } while (swaps);
 
@@ -59,7 +59,7 @@ class BubleSortAlgorithm extends Algorithm {
                 text = left + " je větší, než " + right + ". Musíme prvky přehodit.";
             }
 
-            this.presenter.addSlide(fast ? "<i>Procházíme jednotlivé dvojice a pokud jsou ve špatném pořadí, prohodíme je...</i>" : text, fast ? 1 : 2, this.states, this.staticActors);
+            this.presenter.addSlide(fast ? "<i>Procházíme jednotlivé dvojice a pokud jsou ve špatném pořadí, prohodíme je...</i>" : text, fast ? 2 : 3, this.states, this.staticActors);
 
             if (left > right) {
                 // switch
