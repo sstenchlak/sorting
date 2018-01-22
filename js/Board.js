@@ -26,7 +26,7 @@ class Board {
     // Need to register and initialize all the HTLM elements
 
     registerSpeedSlider(speedSlider) {
-        let min = [0.3, 0.7];
+        let min = [0.3, 0.3];
         let max = [10, 3];
         let that = this;
         speedSlider.on('input', function() {
@@ -86,11 +86,11 @@ class Board {
             this._updatePlayPauseButton();
         });
         this._updatePlayPauseButton();
-        this.presenter.playpauseUpdated();
     }
 
     _updatePlayPauseButton() {
         this._playPauseButton.find('i').toggleClass('fa-pause', !this.presenter.isRunning).toggleClass('fa-play', this.presenter.isRunning);
+        this.presenter.playpauseUpdated();
     }
 
     Forward() {
@@ -105,4 +105,4 @@ class Board {
 
 }
 
-Board.ANIMATION_DEFAULT_DURATION = 1000;
+Board.ANIMATION_DEFAULT_DURATION = 500;
