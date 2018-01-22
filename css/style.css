@@ -28,6 +28,10 @@ body {
     height: 100%;
 }
 
+.not-exists {
+    display: none;
+}
+
 #buttons {
     position: fixed;
     top: 0;

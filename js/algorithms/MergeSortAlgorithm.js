@@ -3,6 +3,18 @@ class MergeSortAlgorithm extends Algorithm {
         // Create numbers
         super.prepare(numbersToSort, board, presenter);
 
+        // Create two arrows and add them to the end of states
+        this._arrowsActor = [new ArrowToNumberActor(board), new ArrowToNumberActor(board)];
+        this.children.push(this._arrowsActor[0]);
+        this.children.push(this._arrowsActor[1]);
+        this._arrows = [cloneObject(this._arrowsActor[0]._state), cloneObject(this._arrowsActor[1]._state)];
+        this.states.push(this._arrows[0]);
+        this.states.push(this._arrows[1]);
+
+        // arrows positions
+        this._arrows[0].pos.y = 200;
+        this._arrows[1].pos.y = 200;
+
         let count = numbersToSort.length;
 
         // First slide
@@ -112,6 +124,10 @@ class MergeSortAlgorithm extends Algorithm {
             if (!nocoment) {
                 this.states[left[leftPointer][0]].stroke = [255, 200, 0];
                 this.states[right[rightPointer][0]].stroke = [255, 50, 0];
+                this._arrows[0].pos = this.states[left[leftPointer][0]].pos;
+                this._arrows[1].pos = this.states[right[rightPointer][0]].pos;
+                this._arrows[0].opacity = 1;
+                this._arrows[1].opacity = 1;
             }
 
             let text = "";
@@ -147,6 +163,10 @@ class MergeSortAlgorithm extends Algorithm {
 
             // Number has been moved
         }
+
+        // Remove arrows
+        this._arrows[0].opacity = 0;
+        this._arrows[1].opacity = 0;
 
         this.presenter.addSlide(nocoment ? null : "Přesunulo se poslední číslo, nyní máme jedno pole prázdné a jedno stále plné. To ale nevadí, jednoduše všechny prvky přesuneme do výsledného pole.", nocoment ? 0.5 : 4, this.states, this.staticActors);
 
