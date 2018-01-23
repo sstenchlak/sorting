@@ -12,6 +12,9 @@ class Algorithm {
         for (let i in board.staticActors) {
             this.staticActors[i] = cloneObject(board.staticActors[i]._state);
         }
+
+        // Set default values for static actors
+        this.staticActors.background.colors = BackgroundActor.COLORS_BLUE();
     }
 
     destructor() {

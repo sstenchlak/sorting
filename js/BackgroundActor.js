@@ -71,12 +71,7 @@ class BackgroundActor extends Actor {
     }
 
     static COLORS_GREEN() {
-        return [
-            [166,213,35],
-            [216,171,35],
-            [40,218,141],
-            [58,218,87]
-        ];
+        return [[125,160,26],[216,171,35],[30,164,106],[44,164,65]];
     }
 
 }

@@ -63,7 +63,6 @@ class Board {
 
     registerMainmenu(container) {
         this.mainMenu = new MainMenu(container, (alg, arr)=>{
-            this.backgroundActor.setState({colors: BackgroundActor.COLORS_BLUE()},true);
             this.presenter.initAlgorithm(alg, arr);
         });
         this.Stop();
@@ -108,6 +107,7 @@ class Board {
     Stop() {
         this.presenter.destroyAlgorithm();
         this.mainMenu.openMenu();
-        this.backgroundActor.setState({colors: BackgroundActor.COLORS_GREEN()}, true);
+        this.presenter.animator.duration = 800;
+        this.backgroundActor.setState({colors: BackgroundActor.COLORS_GREEN()});
     }
 }

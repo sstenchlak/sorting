@@ -157,6 +157,7 @@ button {
     left: 0;
     right: 0;
     padding: 5%;
+    overflow: auto;
 }
 
 #menu button {
